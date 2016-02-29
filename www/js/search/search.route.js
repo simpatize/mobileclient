@@ -2,13 +2,14 @@ angular
 	.module('app.search')
 	.config(config);
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider'];
 
-function config($stateProvider, $urlRouterProvider) {
+function config($stateProvider) {
 	$stateProvider
     .state('search', {
       url: '/search',
       templateUrl: 'templates/search.html',
-      controller: 'searchCtrl'
+      controller: 'SearchController',
+      controllerAs: 'searchCtrl'
     });
 }

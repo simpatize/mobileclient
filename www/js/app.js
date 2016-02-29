@@ -1,11 +1,8 @@
 angular
   .module('app', [
     'ionic',
-    'app.controllers',
-    'app.routes',
-    'app.services',
-    'app.directives',
-    'app.search'
+    'app.search',
+    'app.places'
   ])
   .run(platform);
 
