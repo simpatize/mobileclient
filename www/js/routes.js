@@ -7,20 +7,11 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
-  
-
-      .state('search', {
-    url: '/search',
-    templateUrl: 'templates/search.html',
-    controller: 'searchCtrl'
-  })
-
-  .state('places', {
-    url: '/places',
-    templateUrl: 'templates/places.html',
-    controller: 'placesCtrl'
-  })
+    .state('places', {
+      url: '/places',
+      templateUrl: 'templates/places.html',
+      controller: 'placesCtrl'
+    })
 
 $urlRouterProvider.otherwise('/search')
 
