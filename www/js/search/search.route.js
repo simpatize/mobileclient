@@ -10,7 +10,7 @@ function config($stateProvider) {
 	$stateProvider
     .state('search', {
       url: '/search',
-      templateUrl: 'templates/search.html',
+      templateUrl: 'js/search/search.html',
       controller: 'SearchController',
       controllerAs: 'searchCtrl'
     });

@@ -10,7 +10,7 @@ function config($stateProvider) {
 	$stateProvider
     .state('places', {
       url: '/places',
-      templateUrl: 'templates/places.html',
+      templateUrl: 'js/places/places.html',
       controller: 'PlacesController',
       controllerAs: 'placesCtrl'
     })

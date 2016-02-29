@@ -3,8 +3,8 @@
 angular
   .module('app', [
     'ionic',
-    'app.search',
-    'app.places'
+    'app.places',
+    'app.search'
   ])
   .run(platform);
 
