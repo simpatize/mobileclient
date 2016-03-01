@@ -4,3 +4,9 @@
 node_modules/
 platforms/
 plugins/
+logs/*
+tmp
+.DS_Store
+.idea
+.vagrant/
+*.log
