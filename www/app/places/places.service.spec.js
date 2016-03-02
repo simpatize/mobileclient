@@ -1,7 +1,7 @@
 'use strict';
 
 describe('PlacesService', function() {
-	
+
 	beforeEach(module('app.places'));
 
 	var service, mockBackend;
