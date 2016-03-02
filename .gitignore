@@ -1,9 +1,22 @@
+# Editor files
+.idea
+
+# Cordova folders
 node_modules/
 platforms/
 plugins/
+
+# when use sass, do not commit css files
+/www/css/
+/www/lib/
+
+# do not commit generated images
+/resources/android/
+/resources/ios/
+
+# Other
+.vagrant/
 logs/*
+*.log
 tmp
 .DS_Store
-.idea
-.vagrant/
-*.log
