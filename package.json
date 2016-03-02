@@ -2,6 +2,10 @@
   "name": "mobileclient",
   "version": "1.0.0",
   "description": "A Mobile Client for Simpatize project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simpatize/mobileclient.git"
+  },
   "devDependencies": {
     "bower": "^1.3.3",
     "gulp-util": "^2.2.14",
