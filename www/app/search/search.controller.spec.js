@@ -1,29 +1,38 @@
 'use strict';
 
-describe('SearchController', function() {
+describe('Search controller', function() {
+
+  var controller, placesService;
 
   beforeEach(module('app.places'));
   beforeEach(module('app.search'));
 
-  var searchCtrl, placesService;
-
 	beforeEach(inject(function($controller, PlacesService) {
     placesService = PlacesService;
-
-		searchCtrl = $controller('SearchController', PlacesService);
+		controller = $controller('SearchController', placesService);
   }));
 
-  it('should have a empty places list', function() {
-	  expect(searchCtrl.places.length).toBe(0);
+  it('should be created successfully', function() {
+    expect(controller).toBeDefined;
   });
 
-  it('should call PlacesService with selected type of place as parameter', function() {
-  	searchCtrl.selectedType = {name:'Restaurante'};
+  it('should initialize default list of types', function() {
+    var defaultTypes = [
+      {name: 'Restaurante'},
+      {name: 'Bar'},
+      {name: 'Casa noturna'}
+    ];
 
-    spyOn(placesService, 'query');
+    expect(controller.types.length).toEqual(3);
+    expect(controller.types).toEqual(defaultTypes);
+  });
 
-  	searchCtrl.search();
+  it('should update PlacesService with selected type of place as parameter', function() {
+    spyOn(placesService, 'updatePlacesByType');
 
-		expect(placesService.query).toHaveBeenCalledWith({type:'Restaurante'});
+    controller.selectedType = {name: 'Restaurante'};
+  	controller.search();
+
+		expect(placesService.updatePlacesByType).toHaveBeenCalledWith({name: 'Restaurante'});
   });
 });

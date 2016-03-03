@@ -1,10 +1,10 @@
 'use strict';
 
-describe('PlacesService', function() {
-
-	beforeEach(module('app.places'));
+describe('Places service', function() {
 
 	var service, mockBackend;
+
+  beforeEach(module('app.places'));
 
 	beforeEach(inject(function($httpBackend, PlacesService) {
 		mockBackend = $httpBackend;
@@ -14,13 +14,28 @@ describe('PlacesService', function() {
 		service = PlacesService;
 	}));
 
-	it('should make a http request to /places with the type of place', function() {
-		var places = service.query({type: 'Restaurante'});
+  it('should be created successfully', function() {
+    expect(service).toBeDefined;
+  });
 
-		mockBackend.flush();
+  it('should fetch places by type from webservice and update the PlacesService', function() {
+    service.updatePlacesByType({name: 'Restaurante'});
 
-		expect(places.length).toBe(1);
-		expect(places[0].name).toBe('Buongustaio');
+    mockBackend.flush();
 
+    expect(service.places.length).toEqual(1);
+    expect(service.places[0].name).toEqual('Buongustaio');
+  });
+
+	it('should get updated list of places', function() {
+    service.places = [
+      {name: 'Buongustaio'},
+      {name: 'Sugoi'}
+    ];
+
+    var places = service.getPlaces();
+
+		expect(places.length).toEqual(2);
+		expect(places).toEqual(service.places);
 	});
 });

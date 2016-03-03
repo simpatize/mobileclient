@@ -5,12 +5,17 @@ angular
 	.controller('SearchController', SearchController);
 
 function SearchController(PlacesService) {
-  this.selectedType = {};
-  this.places = [];
+  var vm = this;
 
-  var self = this;
+  vm.selectedType = {};
 
-  this.search = function () {
-    self.places = PlacesService.query({type: self.selectedType.name});
+  vm.types = [
+    {name: 'Restaurante'},
+    {name: 'Bar'},
+    {name: 'Casa noturna'}
+  ];
+
+  vm.search = function() {
+    PlacesService.updatePlacesByType(vm.selectedType);
   };
 }

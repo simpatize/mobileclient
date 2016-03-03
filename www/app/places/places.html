@@ -2,9 +2,7 @@
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list></ion-list>
         <ion-list>
-            <ion-item>Kisu</ion-item>
-            <ion-item>Buongustaio</ion-item>
-            <ion-item>Outback</ion-item>
+            <ion-item ng-repeat="place in placesCtrl.places">{{ place.name }}</ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

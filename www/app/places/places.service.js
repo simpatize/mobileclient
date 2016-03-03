@@ -5,9 +5,25 @@ angular
 	.factory('PlacesService', PlacesService);
 
 function PlacesService($resource) {
-	return $resource(
-		'/places',
-		{},
-		{query: {method:'GET', isArray:true}}
-	);
+  var places = [];
+
+  var service = {
+    places: places,
+    updatePlacesByType: updatePlacesByType,
+    getPlaces: getPlaces
+  };
+
+  return service;
+
+  function updatePlacesByType(type) {
+    this.places = $resource(
+      '/places',
+      {type: type.name},
+      {query: {method:'GET', isArray:true}}
+    ).query();
+  };
+
+  function getPlaces() {
+    return this.places;
+  };
 }
