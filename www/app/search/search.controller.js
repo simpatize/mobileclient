@@ -4,7 +4,7 @@ angular
 	.module('app.search')
 	.controller('SearchController', SearchController);
 
-function SearchController(PlacesService) {
+function SearchController(placesService) {
   var vm = this;
 
   vm.selectedType = {};
@@ -16,6 +16,6 @@ function SearchController(PlacesService) {
   ];
 
   vm.search = function() {
-    PlacesService.setFilter({type: vm.selectedType.name});
+    placesService.setFilter({type: vm.selectedType.name});
   };
 }

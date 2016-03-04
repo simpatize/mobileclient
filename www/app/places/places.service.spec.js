@@ -1,18 +1,18 @@
-'use strict';
-
 describe('Places service', function() {
 
-	var service, mockBackend;
+	var service, httpBackend;
 
   beforeEach(module('app.places'));
 
-	beforeEach(inject(function($httpBackend, PlacesService) {
-		mockBackend = $httpBackend;
-		mockBackend.expectGET('/places?type=Restaurante')
-			.respond([{name: 'Buongustaio'}]);
-
-		service = PlacesService;
+	beforeEach(inject(function($httpBackend, placesService) {
+		httpBackend = $httpBackend;
+		service = placesService;
 	}));
+
+  beforeEach(inject(function() {
+    httpBackend.expectGET('/places?type=Restaurante')
+      .respond([{name: 'Buongustaio'}]);
+  }))
 
   it('should be registered', function() {
     expect(service).not.toEqual(null);
@@ -26,7 +26,7 @@ describe('Places service', function() {
       expect(data[0].name).toEqual('Buongustaio');
     });
 
-    mockBackend.flush();
+    httpBackend.flush();
   });
 
 	it('should update filter', function() {

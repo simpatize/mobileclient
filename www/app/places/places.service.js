@@ -2,9 +2,9 @@
 
 angular
 	.module('app.places')
-	.factory('PlacesService', PlacesService);
+	.factory('placesService', placesService);
 
-function PlacesService($http) {
+function placesService($http) {
   var filter = {};
 
   var service = {

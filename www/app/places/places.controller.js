@@ -4,14 +4,14 @@ angular
 	.module('app.places')
 	.controller('PlacesController', PlacesController);
 
-function PlacesController(PlacesService) {
+function PlacesController(placesService) {
   var vm = this;
   vm.places = [];
 
   activate();
 
   function activate() {
-    return PlacesService.getPlaces().then(function(data) {
+    return placesService.getPlaces().then(function(data) {
         vm.places = data;
         return vm.places;
       });

@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Search controller', function() {
 
   var controller, placesService;
@@ -7,8 +5,8 @@ describe('Search controller', function() {
   beforeEach(module('app.places'));
   beforeEach(module('app.search'));
 
-	beforeEach(inject(function($controller, PlacesService) {
-    placesService = PlacesService;
+	beforeEach(inject(function($controller, _placesService_) {
+    placesService = _placesService_;
 		controller = $controller('SearchController', placesService);
   }));
 
