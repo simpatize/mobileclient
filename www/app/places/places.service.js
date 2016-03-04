@@ -4,26 +4,31 @@ angular
 	.module('app.places')
 	.factory('PlacesService', PlacesService);
 
-function PlacesService($resource) {
-  var places = [];
+function PlacesService($http) {
+  var filter = {};
 
   var service = {
-    places: places,
-    updatePlacesByType: updatePlacesByType,
+    filter: filter,
+    setFilter: setFilter,
     getPlaces: getPlaces
   };
 
   return service;
 
-  function updatePlacesByType(type) {
-    this.places = $resource(
-      '/places',
-      {type: type.name},
-      {query: {method:'GET', isArray:true}}
-    ).query();
+  function setFilter(filter) {
+    this.filter = filter;
   };
 
   function getPlaces() {
-    return this.places;
+    return $http({
+      method: 'GET',
+      url: '/places',
+      params: this.filter
+    })
+    .then(getPlacesComplete);
+
+    function getPlacesComplete(response) {
+      return response.data;
+    }
   };
 }

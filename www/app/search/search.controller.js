@@ -16,6 +16,6 @@ function SearchController(PlacesService) {
   ];
 
   vm.search = function() {
-    PlacesService.updatePlacesByType(vm.selectedType);
+    PlacesService.setFilter({type: vm.selectedType.name});
   };
 }

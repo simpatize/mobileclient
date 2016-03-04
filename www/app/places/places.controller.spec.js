@@ -2,26 +2,32 @@
 
 describe('Places controller', function () {
 
-  var controller, service;
+  var controller;
 
   beforeEach(module('app.places'));
 
-  beforeEach(inject(function($controller, PlacesService) {
-    service = PlacesService;
-    service.places = [
-      {name: 'Sushimi'},
-      {name: 'Wadamon'},
-      {name: 'Kusakabe'}
-    ];
+  beforeEach(inject(function($controller, $q, $rootScope, PlacesService) {
+    sinon.stub(PlacesService, 'getPlaces', function() {
+      var deferred = $q.defer();
+      deferred.resolve([
+        {name: 'Sushimi'},
+        {name: 'Sugoi'},
+        {name: 'Wadamon'}
+      ]);
+      return deferred.promise;
+    });
 
-    controller = $controller('PlacesController', service);
+    controller = $controller('PlacesController', PlacesService);
+    $rootScope.$apply();
   }));
 
   it('should be created successfully', function() {
     expect(controller).toBeDefined;
   });
 
-  it('should store the list of places from Places service', function() {
-    expect(controller.places).toEqual(service.places);
+  describe('after activate', function() {
+    it('should get the list of places from places service', function() {
+      expect(controller.places.length).toEqual(3);
+    });
   });
 });

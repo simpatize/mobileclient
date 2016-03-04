@@ -5,18 +5,17 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon'],
 
 
     // list of files / patterns to load in the browser
     files: [
       'www/lib/ionic/js/ionic.bundle.js',
-      'www/lib/angular-resource/angular-resource.js',
       'www/lib/angular-mocks/angular-mocks.js',
       'www/app/**/*.module.js',
       'www/app/**/*.js'
@@ -60,11 +59,6 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
-
-    plugins : [
-        'karma-phantomjs-launcher',
-        'karma-jasmine'
-    ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

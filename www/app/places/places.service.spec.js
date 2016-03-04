@@ -14,28 +14,26 @@ describe('Places service', function() {
 		service = PlacesService;
 	}));
 
-  it('should be created successfully', function() {
-    expect(service).toBeDefined;
+  it('should be registered', function() {
+    expect(service).not.toEqual(null);
   });
 
-  it('should fetch places by type from webservice and update the PlacesService', function() {
-    service.updatePlacesByType({name: 'Restaurante'});
+  it('should fetch places by type from webservice', function() {
+    service.filter = {type: 'Restaurante'};
+
+    service.getPlaces().then(function(data) {
+      expect(data.length).toEqual(1);
+      expect(data[0].name).toEqual('Buongustaio');
+    });
 
     mockBackend.flush();
-
-    expect(service.places.length).toEqual(1);
-    expect(service.places[0].name).toEqual('Buongustaio');
   });
 
-	it('should get updated list of places', function() {
-    service.places = [
-      {name: 'Buongustaio'},
-      {name: 'Sugoi'}
-    ];
+	it('should update filter', function() {
+    service.filter = {};
 
-    var places = service.getPlaces();
+    service.setFilter({type: 'Restaurante'});
 
-		expect(places.length).toEqual(2);
-		expect(places).toEqual(service.places);
+		expect(service.filter).toEqual({type: 'Restaurante'});
 	});
 });

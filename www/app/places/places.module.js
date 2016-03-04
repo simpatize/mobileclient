@@ -1,4 +1,4 @@
 'use strict';
 
 angular
-	.module('app.places', ['ui.router', 'ngResource']);
+	.module('app.places', ['ui.router']);

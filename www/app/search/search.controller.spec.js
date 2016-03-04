@@ -27,12 +27,12 @@ describe('Search controller', function() {
     expect(controller.types).toEqual(defaultTypes);
   });
 
-  it('should update PlacesService with selected type of place as parameter', function() {
-    spyOn(placesService, 'updatePlacesByType');
+  it('should call places service with filter by type', function() {
+    spyOn(placesService, 'setFilter');
 
     controller.selectedType = {name: 'Restaurante'};
   	controller.search();
 
-		expect(placesService.updatePlacesByType).toHaveBeenCalledWith({name: 'Restaurante'});
+		expect(placesService.setFilter).toHaveBeenCalledWith({type: 'Restaurante'});
   });
 });
