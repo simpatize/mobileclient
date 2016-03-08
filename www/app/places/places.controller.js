@@ -12,8 +12,8 @@ function PlacesController(placesService) {
 
   function activate() {
     return placesService.getPlaces().then(function(data) {
-        vm.places = data;
-        return vm.places;
-      });
+      vm.places = data;
+      return vm.places;
+    });
   }
 }

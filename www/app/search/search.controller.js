@@ -7,15 +7,20 @@ angular
 function SearchController(placesService) {
   var vm = this;
 
+  vm.search = search;
   vm.selectedType = {};
+  vm.types = [];
 
-  vm.types = [
-    {name: 'Restaurante'},
-    {name: 'Bar'},
-    {name: 'Casa noturna'}
-  ];
+  activate();
 
-  vm.search = function() {
-    placesService.setFilter({type: vm.selectedType.name});
+  function activate() {
+    return placesService.getTypes().then(function(data) {
+      vm.types = data;
+      return vm.types;
+    });
+  };
+
+  function search() {
+    placesService.setFilter({type: vm.selectedType.value});
   };
 }

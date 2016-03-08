@@ -9,17 +9,31 @@ describe('Places service', function() {
 		service = placesService;
 	}));
 
-  beforeEach(inject(function() {
-    httpBackend.expectGET('/places?type=Restaurante')
-      .respond([{name: 'Buongustaio'}]);
-  }))
-
   it('should be registered', function() {
     expect(service).not.toEqual(null);
   });
 
+  it('should load default types of places', function() {
+    httpBackend.expectGET('data/types.json')
+      .respond([
+        { name: 'Restaurante', value: 'restaurante' },
+        { name: 'Bar', value: 'bar' }
+      ]);
+
+    service.getTypes().then(function(data) {
+      expect(data.length).toEqual(2);
+      expect(data[1].name).toEqual('Bar');
+      expect(data[1].value).toEqual('bar');
+    });
+
+    httpBackend.flush();
+  });
+
   it('should fetch places by type from webservice', function() {
-    service.filter = {type: 'Restaurante'};
+    httpBackend.expectGET('/places?type=restaurante')
+      .respond([{name: 'Buongustaio'}]);
+
+    service.filter = {type: 'restaurante'};
 
     service.getPlaces().then(function(data) {
       expect(data.length).toEqual(1);
@@ -32,8 +46,8 @@ describe('Places service', function() {
 	it('should update filter', function() {
     service.filter = {};
 
-    service.setFilter({type: 'Restaurante'});
+    service.setFilter({type: 'restaurante'});
 
-		expect(service.filter).toEqual({type: 'Restaurante'});
+		expect(service.filter).toEqual({type: 'restaurante'});
 	});
 });
