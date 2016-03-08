@@ -19,7 +19,7 @@ function placesService($http) {
   function getPlaces() {
     return $http({
       method: 'GET',
-      url: '/places',
+      url: 'http://localhost:8000/places',
       params: this.filter
     })
     .then(getPlacesComplete);
