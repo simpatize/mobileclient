@@ -1,14 +1,14 @@
 describe('Search controller', function() {
 
-  var controller, placesService;
+  var controller, dataservice;
 
-  beforeEach(module('app.places'));
+  beforeEach(module('app.shared'));
   beforeEach(module('app.search'));
 
-	beforeEach(inject(function($controller, $q, $rootScope, _placesService_) {
-    placesService = _placesService_;
+	beforeEach(inject(function($controller, $q, $rootScope, _dataservice_) {
+    dataservice = _dataservice_;
 
-    sinon.stub(placesService, 'getTypes', function() {
+    sinon.stub(dataservice, 'getTypes', function() {
       var deferred = $q.defer();
       deferred.resolve([
         {name: 'Restaurante', value: 'restaurante'},
@@ -18,7 +18,7 @@ describe('Search controller', function() {
       return deferred.promise;
     });
 
-		controller = $controller('SearchController', placesService);
+		controller = $controller('SearchController', dataservice);
     $rootScope.$apply();
   }));
 
@@ -26,8 +26,8 @@ describe('Search controller', function() {
     expect(controller).toBeDefined;
   });
 
-  it('should call places service with filter by type', function() {
-    spyOn(placesService, 'setFilter');
+  it('should call dataservice with filter by type', function() {
+    spyOn(dataservice, 'setFilter');
 
     controller.selectedType = {
       name: 'Restaurante',
@@ -35,11 +35,11 @@ describe('Search controller', function() {
     };
   	controller.search();
 
-		expect(placesService.setFilter).toHaveBeenCalledWith({type: 'restaurante'});
+		expect(dataservice.setFilter).toHaveBeenCalledWith({type: 'restaurante'});
   });
 
   describe('after activate', function() {
-    it('should initialize default list of types from places service', function() {
+    it('should initialize default list of types from dataservice', function() {
       expect(controller.types.length).toEqual(3);
     });
   });

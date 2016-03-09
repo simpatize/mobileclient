@@ -1,10 +1,10 @@
 'use strict';
 
 angular
-	.module('app.places')
-	.factory('placesService', placesService);
+	.module('app.shared')
+	.factory('dataservice', dataservice);
 
-function placesService($http) {
+function dataservice($http) {
   var filter = {};
 
   var service = {

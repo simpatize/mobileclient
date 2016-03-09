@@ -1,12 +1,12 @@
-describe('Places service', function() {
+describe('Dataservice', function() {
 
 	var service, httpBackend;
 
-  beforeEach(module('app.places'));
+  beforeEach(module('app.shared'));
 
-	beforeEach(inject(function($httpBackend, placesService) {
+	beforeEach(inject(function($httpBackend, dataservice) {
 		httpBackend = $httpBackend;
-		service = placesService;
+		service = dataservice;
 	}));
 
   it('should be registered', function() {

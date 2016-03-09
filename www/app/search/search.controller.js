@@ -4,7 +4,7 @@ angular
 	.module('app.search')
 	.controller('SearchController', SearchController);
 
-function SearchController(placesService) {
+function SearchController(dataservice) {
   var vm = this;
 
   vm.search = search;
@@ -14,13 +14,13 @@ function SearchController(placesService) {
   activate();
 
   function activate() {
-    return placesService.getTypes().then(function(data) {
+    return dataservice.getTypes().then(function(data) {
       vm.types = data;
       return vm.types;
     });
   };
 
   function search() {
-    placesService.setFilter({type: vm.selectedType.value});
+    dataservice.setFilter({type: vm.selectedType.value});
   };
 }

@@ -1,12 +1,13 @@
-describe('Places controller', function () {
+describe('Places controller', function() {
 
   var controller;
 
+  beforeEach(module('app.shared'));
   beforeEach(module('app.places'));
 
-  beforeEach(inject(function($controller, $q, $rootScope, placesService) {
+  beforeEach(inject(function($controller, $q, $rootScope, dataservice) {
 
-    sinon.stub(placesService, 'getPlaces', function() {
+    sinon.stub(dataservice, 'getPlaces', function() {
       var deferred = $q.defer();
       deferred.resolve([
         {name: 'Sushimi'},
@@ -16,7 +17,7 @@ describe('Places controller', function () {
       return deferred.promise;
     });
 
-    controller = $controller('PlacesController', placesService);
+    controller = $controller('PlacesController', dataservice);
     $rootScope.$apply();
   }));
 
