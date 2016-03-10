@@ -8,7 +8,7 @@ function dataservice($http) {
   var filter = {};
 
   var service = {
-    filter: filter,
+    getFilter: getFilter,
     getPlaces: getPlaces,
     setFilter: setFilter,
     getTypes: getTypes
@@ -32,6 +32,10 @@ function dataservice($http) {
   function setFilter(filter) {
     this.filter = filter;
   };
+
+  function getFilter() {
+    return this.filter;
+  }
 
   function getTypes() {
     return $http.get('data/types.json')

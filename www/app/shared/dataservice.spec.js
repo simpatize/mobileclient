@@ -29,6 +29,7 @@ describe('Dataservice', function() {
     httpBackend.flush();
   });
 
+
   it('should fetch places by type from webservice', function() {
     httpBackend.expectGET('http://localhost:8080/places?type=restaurante')
       .respond([{name: 'Buongustaio'}]);
@@ -42,12 +43,4 @@ describe('Dataservice', function() {
 
     httpBackend.flush();
   });
-
-	it('should update filter', function() {
-    service.filter = {};
-
-    service.setFilter({type: 'restaurante'});
-
-		expect(service.filter).toEqual({type: 'restaurante'});
-	});
 });
