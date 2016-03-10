@@ -19,7 +19,7 @@ function dataservice($http) {
   function getPlaces() {
     return $http({
       method: 'GET',
-      url: 'http://localhost:8000/places',
+      url: 'http://localhost:8080/places',
       params: this.filter
     })
     .then(getPlacesComplete);

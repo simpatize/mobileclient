@@ -30,7 +30,7 @@ describe('Dataservice', function() {
   });
 
   it('should fetch places by type from webservice', function() {
-    httpBackend.expectGET('http://localhost:8000/places?type=restaurante')
+    httpBackend.expectGET('http://localhost:8080/places?type=restaurante')
       .respond([{name: 'Buongustaio'}]);
 
     service.filter = {type: 'restaurante'};
