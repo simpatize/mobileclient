@@ -1,12 +1,11 @@
---- 
+---
 - hosts: all
   sudo: yes
   roles:
     - martinmicunda.common
-    - martinmicunda.nodejs
-    - martinmicunda.ionic
+    - nodesource.node
     - laggyluke.direnv
-  
+
   tasks:
   - name: cd into the mobile client source folder
     shell: echo  "cd ~/mobileclient" >> /home/vagrant/.bash_profile
