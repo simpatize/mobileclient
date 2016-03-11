@@ -1,5 +1,7 @@
 describe('search route', function() {
-
+  var $state;
+  var $rootScope;
+  
   beforeEach(module('app.places'));
   beforeEach(module('app.search'));
 

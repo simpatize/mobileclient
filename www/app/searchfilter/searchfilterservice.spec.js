@@ -1,9 +1,8 @@
 describe('searchfilterService', function() {
-  var httpBackend, filterService;
+  var filterService;
   beforeEach(module('app.searchfilter'));
 
-  beforeEach(inject(function($httpBackend, searchfilterService) {
-		httpBackend = $httpBackend;
+  beforeEach(inject(function(searchfilterService) {
 		filterService = searchfilterService;
 	}));
 
@@ -16,10 +15,9 @@ describe('searchfilterService', function() {
 	});
 
   it('should update filter', function() {
-    filterService.filter = {};
-
     filterService.setFilter({type: 'restaurante'});
 
 		expect(filterService.getFilter()).toEqual({type: 'restaurante'});
 	});
+  
 })

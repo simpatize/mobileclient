@@ -5,22 +5,20 @@ angular
 	.factory('dataservice', dataservice);
 
 function dataservice($http) {
-  var filter = {};
-
   var service = {
-    getFilter: getFilter,
     getPlaces: getPlaces,
-    setFilter: setFilter,
     getTypes: getTypes
   };
 
   return service;
 
-  function getPlaces() {
+  function getPlaces(filter) {
+    filter = !!filter && !!filter.type && filter.type === '' ? undefined : filter;
+
     return $http({
       method: 'GET',
       url: 'http://localhost:8080/places',
-      params: this.filter
+      params: filter,
     })
     .then(getPlacesComplete);
 
@@ -28,14 +26,6 @@ function dataservice($http) {
       return response.data;
     }
   };
-
-  function setFilter(filter) {
-    this.filter = filter;
-  };
-
-  function getFilter() {
-    return this.filter;
-  }
 
   function getTypes() {
     return $http.get('data/types.json')
