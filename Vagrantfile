@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--vram", "128"]
     vb.customize ["modifyvm", :id, "--usb", "on"]
     vb.customize ["usbfilter", "add", "0", "--target", :id, "--name", "android", "--vendorid", "0x22b8"]
-    vb.name = "IonicBox"
+    vb.name = "Simpatize mobile client"
     vb.memory = 2048
     vb.cpus = 2
   end
