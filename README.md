@@ -1,5 +1,8 @@
 # Mobile Client
 
+
+[![Stories in Ready](https://badge.waffle.io/simpatize/mobileclient.svg?label=ready&title=Board(Ready to Dev))](http://waffle.io/simpatize/simpatize.github.io)
+
 ## Development setup in Vagrant
 First you must install the required Ansible roles using **ansible-galaxy**:
 
