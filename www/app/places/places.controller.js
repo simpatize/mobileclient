@@ -4,14 +4,16 @@ angular
 	.module('app.places')
 	.controller('PlacesController', PlacesController);
 
-function PlacesController(dataservice) {
+function PlacesController(dataservice, searchFilterService) {
   var vm = this;
   vm.places = [];
 
   activate();
 
   function activate() {
-    return dataservice.getPlaces().then(function(data) {
+    var currentFilter = searchFilterService.getFilter();
+
+    return dataservice.getPlaces(currentFilter).then(function(data) {
       vm.places = data;
       return vm.places;
     });

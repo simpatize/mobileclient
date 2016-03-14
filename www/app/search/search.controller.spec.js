@@ -25,13 +25,10 @@ describe('Search controller', function() {
   }));
 
   it('should be created successfully', function() {
-    console.log(controller);
-    console.log(searchFilterService);
-    console.log(dataservice);
     expect(controller).toBeDefined;
   });
 
-  it('should call dataservice with filter by type', function() {
+  it('should update searchFilter with filter by type', function() {
     spyOn(searchFilterService, 'setFilter');
 
     controller.selectedType = {
