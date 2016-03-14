@@ -1,9 +1,9 @@
-describe('searchfilterService', function() {
+describe('searchFilterService', function() {
   var filterService;
   beforeEach(module('app.searchfilter'));
 
-  beforeEach(inject(function(searchfilterService) {
-		filterService = searchfilterService;
+  beforeEach(inject(function(searchFilterService) {
+		filterService = searchFilterService;
 	}));
 
   it('should be registered', function() {
@@ -19,5 +19,5 @@ describe('searchfilterService', function() {
 
 		expect(filterService.getFilter()).toEqual({type: 'restaurante'});
 	});
-  
+
 })

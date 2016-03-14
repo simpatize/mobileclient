@@ -1,20 +1,24 @@
+'use strict';
+
 angular
   .module('app.searchfilter')
-  .factory('searchfilterService', function() {
-    var filter = {};
+  .factory('searchFilterService', searchFilterService);
 
-    var service = {
-      getFilter: getFilter,
-      setFilter: setFilter,
-    };
+function searchFilterService() {
+  var filter = {};
 
-    return service;
+  var service = {
+    getFilter: getFilter,
+    setFilter: setFilter,
+  };
 
-    function setFilter(updatedFilter) {
-      filter = updatedFilter;
-    }
+  return service;
 
-    function getFilter() {
-      return filter;
-    }
-  })
+  function setFilter(updatedFilter) {
+    filter = updatedFilter;
+  }
+
+  function getFilter() {
+    return filter;
+  }
+}

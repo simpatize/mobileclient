@@ -4,7 +4,7 @@ angular
 	.module('app.search')
 	.controller('SearchController', SearchController);
 
-function SearchController(dataservice) {
+function SearchController(dataservice, searchFilterService) {
   var vm = this;
 
   vm.search = search;
@@ -21,6 +21,6 @@ function SearchController(dataservice) {
   };
 
   function search() {
-    dataservice.setFilter({type: vm.selectedType.value});
+    searchFilterService.setFilter({type: vm.selectedType.value});
   };
 }
