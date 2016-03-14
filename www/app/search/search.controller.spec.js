@@ -1,16 +1,16 @@
 describe('Search controller', function() {
 
-  var controller, dataservice, searchFilterService;
+  var controller, dataService, searchFilterService;
 
   beforeEach(module('app.shared'));
-  beforeEach(module('app.searchfilter'));
+  beforeEach(module('app.searchFilter'));
   beforeEach(module('app.search'));
 
-	beforeEach(inject(function($controller, $q, $rootScope, _dataservice_, _searchFilterService_) {
-    dataservice = _dataservice_;
+	beforeEach(inject(function($controller, $q, $rootScope, _dataService_, _searchFilterService_) {
+    dataService = _dataService_;
     searchFilterService = _searchFilterService_;
 
-    sinon.stub(dataservice, 'getTypes', function() {
+    sinon.stub(dataService, 'getTypes', function() {
       var deferred = $q.defer();
       deferred.resolve([
         {name: 'Restaurante', value: 'restaurante'},
@@ -20,7 +20,7 @@ describe('Search controller', function() {
       return deferred.promise;
     });
 
-		controller = $controller('SearchController', dataservice, searchFilterService);
+		controller = $controller('SearchController', dataService, searchFilterService);
     $rootScope.$apply();
   }));
 
@@ -41,7 +41,7 @@ describe('Search controller', function() {
   });
 
   describe('after activate', function() {
-    it('should initialize default list of types from dataservice', function() {
+    it('should initialize default list of types from data service', function() {
       expect(controller.types.length).toEqual(3);
     });
   });

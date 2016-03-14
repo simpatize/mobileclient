@@ -1,4 +1,4 @@
 'use strict';
 
 angular
-  .module('app.searchfilter', []);
+  .module('app.searchFilter', []);

@@ -1,27 +1,27 @@
 describe('Places controller', function() {
 
-  var $controller, $q, $rootScope, dataservice, searchFilterService;
+  var $controller, $q, $rootScope, dataService, searchFilterService;
 
   beforeEach(module('app.shared'));
-  beforeEach(module('app.searchfilter'));
+  beforeEach(module('app.searchFilter'));
   beforeEach(module('app.places'));
 
-  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _dataservice_, _searchFilterService_) {
+  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _dataService_, _searchFilterService_) {
     $controller = _$controller_;
     $q = _$q_;
     $rootScope = _$rootScope_;
-    dataservice = _dataservice_;
+    dataService = _dataService_;
     searchFilterService = _searchFilterService_;
   }));
 
   it('should be created successfully', function() {
-    var controller = $controller('PlacesController', dataservice, searchFilterService);
+    var controller = $controller('PlacesController', dataService, searchFilterService);
     expect(controller).toBeDefined;
   });
 
   describe('after activate', function() {
     beforeEach(function() {
-      sinon.stub(dataservice, 'getPlaces', function() {
+      sinon.stub(dataService, 'getPlaces', function() {
         var deferred = $q.defer();
         deferred.resolve([]);
         return deferred.promise;
@@ -33,10 +33,10 @@ describe('Places controller', function() {
         return {type: 'restaurante'};
       });
 
-      $controller('PlacesController', dataservice, searchFilterService);
+      $controller('PlacesController', dataService, searchFilterService);
       $rootScope.$apply();
 
-      expect(dataservice.getPlaces.firstCall.args[0])
+      expect(dataService.getPlaces.firstCall.args[0])
         .toEqual({type: 'restaurante'});
     });
 
@@ -45,10 +45,10 @@ describe('Places controller', function() {
         return undefined;
       });
 
-      $controller('PlacesController', dataservice, searchFilterService);
+      $controller('PlacesController', dataService, searchFilterService);
       $rootScope.$apply();
 
-      expect(dataservice.getPlaces.firstCall.args[0])
+      expect(dataService.getPlaces.firstCall.args[0])
         .toEqual(undefined);
     });
   });

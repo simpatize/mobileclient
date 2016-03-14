@@ -2,9 +2,9 @@
 
 angular
 	.module('app.shared')
-	.factory('dataservice', dataservice);
+	.factory('dataService', dataService);
 
-function dataservice($http) {
+function dataService($http) {
   var service = {
     getPlaces: getPlaces,
     getTypes: getTypes

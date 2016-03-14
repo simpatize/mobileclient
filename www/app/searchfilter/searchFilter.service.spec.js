@@ -1,6 +1,6 @@
 describe('searchFilterService', function() {
   var filterService;
-  beforeEach(module('app.searchfilter'));
+  beforeEach(module('app.searchFilter'));
 
   beforeEach(inject(function(searchFilterService) {
 		filterService = searchFilterService;

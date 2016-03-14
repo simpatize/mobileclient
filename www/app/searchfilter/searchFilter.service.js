@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('app.searchfilter')
+  .module('app.searchFilter')
   .factory('searchFilterService', searchFilterService);
 
 function searchFilterService() {

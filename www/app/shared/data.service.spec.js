@@ -5,9 +5,9 @@ describe('Dataservice', function() {
 
   beforeEach(module('app.shared'));
 
-	beforeEach(inject(function($httpBackend, dataservice) {
+	beforeEach(inject(function($httpBackend, dataService) {
 		httpBackend = $httpBackend;
-		service = dataservice;
+		service = dataService;
 
     expectedResponse = [{name: 'Buongustaio'}];
 	}));
