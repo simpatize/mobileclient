@@ -1,1 +1,1 @@
-web: npm run heroku_start
+web: ./node_modules/http-server/bin/http-server ./www/ -p $PORT
