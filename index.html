@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Mobile Client</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <script src="app/app.module.js"></script>
+    <script src="app/app.route.js"></script>
+
+    <script src="app/shared/shared.module.js"></script>
+    <script src="app/shared/data.service.js"></script>
+
+    <script src="app/places/places.module.js"></script>
+    <script src="app/places/places.controller.js"></script>
+    <script src="app/places/places.route.js"></script>
+
+    <script src="app/search/search.module.js"></script>
+    <script src="app/search/search.controller.js"></script>
+    <script src="app/search/search.route.js"></script>
+
+    <script src="app/searchfilter/searchFilter.module.js"></script>
+    <script src="app/searchfilter/searchFilter.service.js"></script>
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+    <div>
+      <div>
+          <ion-nav-bar class="bar-stable">
+              <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+          </ion-nav-bar>
+          <ion-nav-view></ion-nav-view>
+      </div>
+    </div>
+  </body>
+</html>

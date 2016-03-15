@@ -1,0 +1,15 @@
+<ion-view title="Search">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list">
+            <ion-item class="item-divider">Tipos de estabelecimento</ion-item>
+            <ion-radio ng-repeat="type in searchCtrl.types"
+                       ng-value="type"
+                       ng-model="searchCtrl.selectedType">
+              {{ type.name }}
+            </ion-radio>
+        </form>
+        <a ng-click="searchCtrl.search()" ui-sref="places" class="button button-royal button-block ">
+          Buscar
+        </a>
+    </ion-content>
+</ion-view>
