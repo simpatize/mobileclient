@@ -36,7 +36,7 @@
     "postinstall": "./node_modules/bower/bin/bower install",
     "prestart": "npm install",
     "start": "./node_modules/ionic/bin/ionic serve --nobrowser",
-    "heroku_start": "./node_modules/ionic/bin/ionic serve --nobrowser --address 0.0.0.0 --port $PORT",
+    "heroku_start": "./node_modules/http-server/bin/http-server ./www/ -p $PORT",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
