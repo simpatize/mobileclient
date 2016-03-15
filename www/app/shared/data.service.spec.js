@@ -35,12 +35,24 @@ describe('Dataservice', function() {
   });
 
   describe('getPlaces()', function () {
+    var envService;
+    
+    beforeEach(inject(function(_envService_) {
+      envService = _envService_;
+
+      sinon.stub(envService, 'read', function(key) {
+        return 'http://myBaseBackendUrl';
+      });
+    }));
 
     it('should return all places when invoked without filter argument', function() {
-      httpBackend.expectGET('http://localhost:8080/places')
+      httpBackend.expectGET('http://myBaseBackendUrl/places/')
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
+        expect(envService.read.firstCall.args[0])
+          .toEqual('baseBackendUrl');
+
         expect(data).toEqual(expectedResponse);
       });
 
@@ -48,10 +60,12 @@ describe('Dataservice', function() {
     });
 
     it('should return all places when filter is an empty object', function() {
-      httpBackend.expectGET('http://localhost:8080/places')
+      httpBackend.expectGET('http://myBaseBackendUrl/places/')
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
+        expect(envService.read.firstCall.args[0])
+          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 
@@ -61,10 +75,12 @@ describe('Dataservice', function() {
     it('should return all places when filter type key exists but is an empty string', function() {
       var filter = {type: ''}
 
-      httpBackend.expectGET('http://localhost:8080/places?type=')
+      httpBackend.expectGET('http://myBaseBackendUrl/places/?type=')
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {
+        expect(envService.read.firstCall.args[0])
+          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 
@@ -74,10 +90,12 @@ describe('Dataservice', function() {
     it('should fetch places by type from webservice', function() {
       var filter = {type: 'restaurante'}
 
-      httpBackend.expectGET('http://localhost:8080/places?type=restaurante')
+      httpBackend.expectGET('http://myBaseBackendUrl/places/?type=restaurante')
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {
+        expect(envService.read.firstCall.args[0])
+          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 
