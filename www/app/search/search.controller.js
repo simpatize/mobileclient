@@ -4,23 +4,18 @@ angular
 	.module('app.search')
 	.controller('SearchController', SearchController);
 
-function SearchController(dataService, searchFilterService) {
+function SearchController(dataService) {
   var vm = this;
 
   vm.search = search;
-  vm.selectedType = {};
-  vm.types = [];
-
-  activate();
-
-  function activate() {
-    return dataService.getTypes().then(function(data) {
-      vm.types = data;
-      return vm.types;
-    });
-  };
+  vm.searchTerm = '';
+  vm.searchResults = [];
 
   function search() {
-    searchFilterService.setFilter({type: vm.selectedType.value});
+    var res = dataService.getPlaces(vm.searchTerm);
+
+    res.then(function(data) {
+      vm.searchResults = data;
+    });
   };
 }

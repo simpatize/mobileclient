@@ -4,16 +4,26 @@ angular
 	.module('app.shared')
 	.factory('dataService', dataService);
 
-function dataService($http, envService) {
+function dataService($http, $q, envService) {
   var service = {
-    getPlaces: getPlaces,
-    getTypes: getTypes
+    getPlaces: getPlaces
   };
 
   return service;
 
   function getPlaces(filter) {
-    filter = !!filter && !!filter.type && filter.type === '' ? undefined : filter;
+    // var placesPromise = $q.defer();
+    //
+    // setTimeout(function() {
+    //   placesPromise.resolve([
+    //       {name: 'Bar Jurubeba', thumbnailUrl: "http://esq.h-cdn.co/assets/cm/15/06/54d3cdbba4f40_-_esq-01-bar-lgn.jpg"},
+    //       {name: 'Restaurante Jurubeba', thumbnailUrl: "http://esq.h-cdn.co/assets/cm/15/06/54d3cdbba4f40_-_esq-01-bar-lgn.jpg"},
+    //     ]
+    //   );
+    // }, 2000);
+    //
+    // return placesPromise.promise;
+    filter = !!filter && !!filter.type && filter.searchTerm === '' ? undefined : filter;
 
     return $http({
       method: 'GET',
@@ -23,15 +33,6 @@ function dataService($http, envService) {
     .then(getPlacesComplete);
 
     function getPlacesComplete(response) {
-      return response.data;
-    }
-  };
-
-  function getTypes() {
-    return $http.get('data/types.json')
-      .then(getTypesComplete);
-
-    function getTypesComplete(response) {
       return response.data;
     }
   };

@@ -3,9 +3,7 @@
 angular
   .module('app', [
     'ionic',
-    'app.searchFilter',
     'app.shared',
-    'app.places',
     'app.search'
   ])
   .run(platform);

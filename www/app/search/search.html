@@ -1,15 +1,25 @@
 <ion-view title="Search">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list">
-            <ion-item class="item-divider">Tipos de estabelecimento</ion-item>
-            <ion-radio ng-repeat="type in searchCtrl.types"
-                       ng-value="type"
-                       ng-model="searchCtrl.selectedType">
-              {{ type.name }}
-            </ion-radio>
-        </form>
-        <a ng-click="searchCtrl.search()" ui-sref="places" class="button button-royal button-block ">
+      <form name="searchForm">
+        <label class="item item-input">
+          <span class="icon ion-search placeholder-icon"></span>
+          <input type="search"
+            ng-model="searchCtrl.selectedType"
+            ng-value="type"
+            required />
+        </label>
+        <a  ng-click="searchCtrl.search()"
+            ng-disabled="searchForm.$invalid"
+            class="button button-royal button-block ">
           Buscar
         </a>
+      </form>
+
+      <ion-list can-swipe="false">
+        <a class="item item-thumbnail-left" href="#" ng-repeat="place in searchCtrl.searchResults">
+          <img src="{{place.thumbnailUrl}}"/>
+          <h2 style="vertical-align:middle">{{place.name}}</h2>
+        </a>
+      </ion-list>
     </ion-content>
 </ion-view>
