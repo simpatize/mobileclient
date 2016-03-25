@@ -16,10 +16,15 @@
       </form>
 
       <ion-list can-swipe="false">
-        <a class="item item-thumbnail-left" href="#" ng-repeat="place in searchCtrl.searchResults">
+        <ion-item
+          collection-repeat="place in searchCtrl.searchResults"
+          href="#"
+          class="item item-thumbnail-left" >
+
           <img src="{{place.thumbnailUrl}}"/>
           <h2 style="vertical-align:middle">{{place.name}}</h2>
-        </a>
+
+        </ion-item>
       </ion-list>
     </ion-content>
 </ion-view>
