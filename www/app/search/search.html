@@ -4,7 +4,7 @@
         <label class="item item-input">
           <span class="icon ion-search placeholder-icon"></span>
           <input type="search"
-            ng-model="searchCtrl.selectedType"
+            ng-model="searchCtrl.searchTerm"
             ng-value="type"
             required />
         </label>
@@ -21,7 +21,7 @@
           href="#"
           class="item item-thumbnail-left" >
 
-          <img src="{{place.thumbnailUrl}}"/>
+          <img ng-src="{{place.thumbnailUrl}}"/>
           <h2 style="vertical-align:middle">{{place.name}}</h2>
 
         </ion-item>
