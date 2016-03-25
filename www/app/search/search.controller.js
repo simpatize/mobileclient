@@ -4,7 +4,7 @@ angular
 	.module('app.search')
 	.controller('SearchController', SearchController);
 
-function SearchController(dataService) {
+function SearchController($ionicLoading, $ionicPopup, dataService) {
   var vm = this;
 
   vm.search = search;
@@ -13,11 +13,20 @@ function SearchController(dataService) {
 
   function search() {
     if(vm.searchTerm.length > 0) {
+      $ionicLoading.show();
       var res = dataService.getPlaces(vm.searchTerm);
 
       res.then(function(data) {
         vm.searchResults = data;
+        $ionicLoading.hide();
+      }, function(reason) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Failed to load places!',
+          template: reason
+        });
       });
+
+      $ionicLoading.hide();
     }
   };
 }
