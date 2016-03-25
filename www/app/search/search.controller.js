@@ -12,10 +12,12 @@ function SearchController(dataService) {
   vm.searchResults = [];
 
   function search() {
-    var res = dataService.getPlaces(vm.searchTerm);
+    if(vm.searchTerm.length > 0) {
+      var res = dataService.getPlaces(vm.searchTerm);
 
-    res.then(function(data) {
-      vm.searchResults = data;
-    });
+      res.then(function(data) {
+        vm.searchResults = data;
+      });
+    }
   };
 }
