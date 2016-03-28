@@ -26,7 +26,7 @@ function dataService($http, $q, envService) {
     return placesPromise.promise;
 
     function getPlacesComplete(response) {
-      placesPromise.resolve(response.data);
+      placesPromise.resolve(response);
     }
 
     function propagateErrorReason(reason) {
