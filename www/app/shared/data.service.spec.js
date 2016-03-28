@@ -9,7 +9,7 @@ describe('Dataservice', function() {
 		httpBackend = $httpBackend;
 		service = dataService;
 
-    expectedResponse = [{name: 'Buongustaio'}];
+    expectedResponse = {data: [{name: 'Buongustaio'}]};
 	}));
 
   it('should be registered', function() {
@@ -35,7 +35,7 @@ describe('Dataservice', function() {
         expect(envService.read.firstCall.args[0])
           .toEqual('baseBackendUrl');
 
-        expect(data).toEqual(expectedResponse);
+        expect(data).toEqual(expectedResponse.data);
       });
 
       httpBackend.flush();
@@ -48,7 +48,7 @@ describe('Dataservice', function() {
       service.getPlaces().then(function(data) {
         expect(envService.read.firstCall.args[0])
           .toEqual('baseBackendUrl');
-        expect(data).toEqual(expectedResponse);
+        expect(data).toEqual(expectedResponse.data);
       });
 
       httpBackend.flush();
@@ -63,7 +63,7 @@ describe('Dataservice', function() {
       service.getPlaces(filter).then(function(data) {
         expect(envService.read.firstCall.args[0])
           .toEqual('baseBackendUrl');
-        expect(data).toEqual(expectedResponse);
+        expect(data).toEqual(expectedResponse.data);
       });
 
       httpBackend.flush();
@@ -78,7 +78,7 @@ describe('Dataservice', function() {
       service.getPlaces(filter).then(function(data) {
         expect(envService.read.firstCall.args[0])
           .toEqual('baseBackendUrl');
-        expect(data).toEqual(expectedResponse);
+        expect(data).toEqual(expectedResponse.data);
       });
 
       httpBackend.flush();

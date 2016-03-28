@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('app.search')
+	.module('app.search', ['ionic'])
 	.controller('SearchController', SearchController);
 
 function SearchController($ionicLoading, $ionicPopup, dataService) {
@@ -14,18 +14,23 @@ function SearchController($ionicLoading, $ionicPopup, dataService) {
   function search() {
     if(vm.searchTerm.length > 0) {
       $ionicLoading.show();
-      var res = dataService.getPlaces(vm.searchTerm);
+      dataService.getPlaces({searchTerm: 'restaurante'}).then(onSuccess, onError);
+    }
 
-      res.then(function(data) {
-        vm.searchResults = data;
-        $ionicLoading.hide();
-      }, function(reason) {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Failed to load places!',
-          template: reason
-        });
+    function onSuccess(data) {
+      vm.searchResults = data;
+      $ionicLoading.hide();
+    }
+
+    function onError(status) {
+      var msg = status !== null ?
+        'Failed to perform a search - server returned HTTP status ' + status:
+        'Could not perform a search - check your connectivity.';
+
+      var alertPopup = $ionicPopup.alert({
+        title: 'Failed to load places!',
+        template: msg
       });
-
       $ionicLoading.hide();
     }
   };

@@ -12,28 +12,29 @@ function dataService($http, $q, envService) {
   return service;
 
   function getPlaces(filter) {
-    // var placesPromise = $q.defer();
-    //
-    // setTimeout(function() {
-    //   placesPromise.resolve([
-    //       {name: 'Bar Jurubeba', thumbnailUrl: "http://esq.h-cdn.co/assets/cm/15/06/54d3cdbba4f40_-_esq-01-bar-lgn.jpg"},
-    //       {name: 'Restaurante Jurubeba', thumbnailUrl: "http://esq.h-cdn.co/assets/cm/15/06/54d3cdbba4f40_-_esq-01-bar-lgn.jpg"},
-    //     ]
-    //   );
-    // }, 2000);
-    //
-    // return placesPromise.promise;
-    filter = !!filter && !!filter.type && filter.searchTerm === '' ? undefined : filter;
+    var placesPromise = $q.defer();
 
-    return $http({
+    filter = !!filter && !!filter.type && filter.searchTerm === '' ? undefined : filter;
+    $http({
       method: 'GET',
       url: envService.read('baseBackendUrl') + '/places/',
       params: filter,
     })
-    .then(getPlacesComplete);
+    .success(getPlacesComplete)
+    .error(propagateErrorReason);
+
+    return placesPromise.promise;
 
     function getPlacesComplete(response) {
-      return response.data;
+      placesPromise.resolve(response.data);
+    }
+
+    function propagateErrorReason(reason) {
+      if(reason === null) {
+        placesPromise.reject(reason);
+      } else {
+        placesPromise.reject(reason.status);
+      }
     }
   };
 }
