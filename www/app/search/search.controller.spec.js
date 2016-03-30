@@ -56,7 +56,7 @@ describe('Search controller', function() {
       controller.search();
       $rootScope.$apply();
 
-      expect(dataService.getPlaces.firstCall.args[0]).toEqual({searchTerm: 'restaurante'});
+      expect(dataService.getPlaces.firstCall.args[0]).toEqual({keyword: 'restaurante'});
       expect(controller.searchResults).toEqual([{name: 'Buongustaio'}]);
     });
 

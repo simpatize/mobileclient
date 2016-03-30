@@ -28,7 +28,7 @@ describe('Dataservice', function() {
     }));
 
     it('should return all places when invoked without filter argument', function() {
-      httpBackend.expectGET('http://myBaseBackendUrl/places/')
+      httpBackend.expectGET('http://myBaseBackendUrl/v1/places')
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
@@ -42,7 +42,7 @@ describe('Dataservice', function() {
     });
 
     it('should return all places when filter is an empty object', function() {
-      httpBackend.expectGET('http://myBaseBackendUrl/places/')
+      httpBackend.expectGET('http://myBaseBackendUrl/v1/places')
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
@@ -55,9 +55,9 @@ describe('Dataservice', function() {
     });
 
     it('should return all places when filter type key exists but is an empty string', function() {
-      var filter = {searchTerm: ''}
+      var filter = {keyword: ''}
 
-      httpBackend.expectGET('http://myBaseBackendUrl/places/?searchTerm=')
+      httpBackend.expectGET('http://myBaseBackendUrl/v1/places?keyword=')
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {
@@ -70,9 +70,9 @@ describe('Dataservice', function() {
     })
 
     it('should fetch places by type from webservice', function() {
-      var filter = {searchTerm: 'restaurante'}
+      var filter = {keyword: 'restaurante'}
 
-      httpBackend.expectGET('http://myBaseBackendUrl/places/?searchTerm=restaurante')
+      httpBackend.expectGET('http://myBaseBackendUrl/v1/places?keyword=restaurante')
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {

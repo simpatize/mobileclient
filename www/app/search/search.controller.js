@@ -14,7 +14,7 @@ function SearchController($ionicLoading, $ionicPopup, dataService) {
   function search() {
     if(vm.searchTerm.length > 0) {
       $ionicLoading.show();
-      dataService.getPlaces({searchTerm: 'restaurante'}).then(onSuccess, onError);
+      dataService.getPlaces({keyword: vm.searchTerm}).then(onSuccess, onError);
     }
 
     function onSuccess(data) {
