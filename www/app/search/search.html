@@ -21,7 +21,7 @@
           href="#"
           class="item item-thumbnail-left" >
 
-          <img ng-src="{{place.thumbnailUrl}}"/>
+          <img ng-src="{{place.thumbnailUrl ? place.thumbnailUrl : place.icon}}"/>
           <h2 style="vertical-align:middle">{{place.name}}</h2>
 
         </ion-item>
