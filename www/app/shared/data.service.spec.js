@@ -4,6 +4,11 @@ describe('Dataservice', function() {
   var expectedResponse;
 
   beforeEach(module('app.shared'));
+	beforeEach(function () {
+		module(function($provide) {
+			$provide.constant('backendUrl', 'http://myBaseBackendUrl');
+		});
+	});
 
 	beforeEach(inject(function($httpBackend, dataService) {
 		httpBackend = $httpBackend;
@@ -17,24 +22,12 @@ describe('Dataservice', function() {
   });
 
   describe('getPlaces()', function () {
-    var envService;
-
-    beforeEach(inject(function(_envService_) {
-      envService = _envService_;
-
-      sinon.stub(envService, 'read', function(key) {
-        return 'http://myBaseBackendUrl';
-      });
-    }));
 
     it('should return all places when invoked without filter argument', function() {
       httpBackend.expectGET('http://myBaseBackendUrl/v1/places')
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
-        expect(envService.read.firstCall.args[0])
-          .toEqual('baseBackendUrl');
-
         expect(data).toEqual(expectedResponse);
       });
 
@@ -46,8 +39,6 @@ describe('Dataservice', function() {
         .respond(expectedResponse);
 
       service.getPlaces().then(function(data) {
-        expect(envService.read.firstCall.args[0])
-          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 
@@ -61,8 +52,6 @@ describe('Dataservice', function() {
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {
-        expect(envService.read.firstCall.args[0])
-          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 
@@ -76,8 +65,6 @@ describe('Dataservice', function() {
         .respond(expectedResponse);
 
       service.getPlaces(filter).then(function(data) {
-        expect(envService.read.firstCall.args[0])
-          .toEqual('baseBackendUrl');
         expect(data).toEqual(expectedResponse);
       });
 

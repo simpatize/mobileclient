@@ -20,3 +20,4 @@ logs/*
 *.log
 tmp
 .DS_Store
+/www/app/config/config.module.js

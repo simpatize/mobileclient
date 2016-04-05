@@ -4,7 +4,7 @@ angular
 	.module('app.shared')
 	.factory('dataService', dataService);
 
-function dataService($http, $q, envService) {
+function dataService($http, $q, backendUrl) {
   var service = {
     getPlaces: getPlaces
   };
@@ -17,7 +17,7 @@ function dataService($http, $q, envService) {
     filter = !!filter && !!filter.type && filter.searchTerm === '' ? undefined : filter;
     $http({
       method: 'GET',
-      url: envService.read('baseBackendUrl') + '/v1/places',
+      url: backendUrl + '/v1/places',
       params: filter,
     })
     .success(getPlacesComplete)
