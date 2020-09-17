@@ -15,7 +15,7 @@
     "fs": "0.0.2",
     "gulp-replace-task": "^0.11.0",
     "yargs": "^4.4.0",
-    "shelljs": "^0.3.0"
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "jasmine-core": "^2.4.1",
